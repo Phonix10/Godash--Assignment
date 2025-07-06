@@ -19,5 +19,13 @@ public class Cart {
                 .mapToInt(CartItem::getTotalPrice)
                 .sum();
     }
+    public Cart cloneCart() {
+        Cart clone = new Cart();
+        for (CartItem item : items) {
+            clone.addItem(item.getSku(), item.getQuantity());
+        }
+        return clone;
+    }
     
 }
+
