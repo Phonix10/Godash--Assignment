@@ -11,31 +11,29 @@ import org.example.promotion.ComboPromotion;
 import org.example.promotion.FixedPriceNItemsPromotion;
 import org.example.promotion.Promotion;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
-        // Define SKUs and unit prices
+
         SKU skuA = new SKU("A", 50);
         SKU skuB = new SKU("B", 30);
         SKU skuC = new SKU("C", 20);
         SKU skuD = new SKU("D", 15);
 
-        // Scenario C setup
-        Cart cart = new Cart();
-        cart.addItem(skuA, 3); // 3A = 130
-        cart.addItem(skuB, 5); // 2B+2B+1B = 45+45+30
-        cart.addItem(skuC, 1); // with D combo
-        cart.addItem(skuD, 1); // C+D = 30
 
-        // Active promotions
+        Cart cart = new Cart();
+        cart.addItem(skuA, 3); 
+        cart.addItem(skuB, 5); 
+        cart.addItem(skuC, 1); 
+        cart.addItem(skuD, 1); 
+
         List<Promotion> promotions = Arrays.asList(
                 new FixedPriceNItemsPromotion("A", 3, 130),
                 new FixedPriceNItemsPromotion("B", 2, 45),
                 new ComboPromotion("C", "D", 30)
         );
 
-        // Use PromotionEngine
+
         PromotionEngine engine = new PromotionEngine(promotions);
         int total = engine.applyPromotions(cart);
 
@@ -44,6 +42,6 @@ public class Main {
             System.out.printf("%s x %d = %d%n", item.getSku().getId(), item.getQuantity(), item.getTotalPrice());
         }
         System.out.println("--------------------------");
-        System.out.println("Total Price After Promotions: ₹" + total);
+        System.out.println("Total Price After Promotions: " + total);
     }
 }
