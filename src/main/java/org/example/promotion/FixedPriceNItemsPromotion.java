@@ -35,6 +35,8 @@ public class FixedPriceNItemsPromotion implements Promotion {
 
         return total;
     }
+
+    
 }
     
 

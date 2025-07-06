@@ -4,4 +4,5 @@ import org.example.model.Cart;
 
 public interface Promotion {
     int apply(Cart cart);
+    
 }

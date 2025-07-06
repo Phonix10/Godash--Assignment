@@ -13,14 +13,12 @@ public class PromotionEngine {
     }
 
     public int applyPromotions(Cart cart) {
-        Cart tempCart = cart.cloneCart(); // use a copy for isolated mutation if needed
-        int total = 0;
+        int total = cart.getTotalWithoutPromotions(); // Start from regular total
 
         for (Promotion promo : promotions) {
-            total = promo.apply(tempCart);
-            tempCart = cart; // (Optional): if each promo should apply independently, reuse cart
+            total = Math.min(total, promo.apply(cart)); // Use best discount
         }
 
         return total;
-    }
+        }
 }
